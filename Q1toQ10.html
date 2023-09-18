@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Examples</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body{
+            font-family: sans-serif;
+            background-color: #ccc;
+        }
+        #app{
+            display: flex;
+            flex-wrap: wrap;
+            
+
+        }
+        .question{
+           
+            margin: 10px;
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border-radius: 5px;
+            
+        }
+        button{
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type=text],input[type=email] {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            resize: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="question">
+
+        <!-- 1. Template Syntax -->
+        <!-- In Vue.js, you can use the "@" symbol as shorthand for "v-on:" to listen to events. -->
+        <h2>Question 1</h2>
+        <!-- a. Text Interpolation -->
+        <!-- Displaying a paragraph that shows a message -->
+        <!-- The "{{ }}" syntax allows you to perform text interpolation. -->
+        <p>{{ message }}</p>
+
+        <!-- b. Raw HTML [v-html] -->
+        <!-- Displaying a paragraph that shows raw HTML -->
+        <!-- The "v-html" directive allows you to render raw HTML. -->
+        <div v-html="rawHTML"></div>
+
+        <!-- c. Attribute Bindings [v-bind:id] -->
+        <!-- Bind an ID attribute dynamically -->
+        <input :id="inputId" type="text" placeholder="Enter something">
+
+        <!-- d. JavaScript expressions inside syntax i.e.{{ }} -->
+        <!-- Perform a JavaScript expression within double curly braces -->
+        <p>Answer of six plus four  = {{ 6 + 4 }}</p>
+        </div>
+        <div class="question">
+        <!-- 2. Methods -->
+        <!-- In Vue.js, you can use the "@" symbol as shorthand for "v-on:" to listen to events. -->
+        <!-- Here, the "@click" directive is bound to the "sayHello" method. -->
+        <h2>Question 2</h2>
+        <button @click="sayHello">Say Hello</button>
+        </div>
+        <div class="question">
+        <!-- 3. Reactivity Fundamentals -->
+        <!-- In Vue.js, reactivity is a fundamental concept that allows data properties to be automatically updated in the DOM when their values change. -->
+        <h2>Question 3</h2>
+        <p>  how many continent of the world : <br> {{ continent }}</p>
+        </div>
+        <div class="question">
+        <!-- 4. Computed Properties -->
+        <!-- Displaying a paragraph that shows a computed property -->
+        <h2>Question 4</h2>
+        <p>Reversed Message: {{ rmessage }}</p>
+        </div>
+        <div class="question">
+        <!-- 5. Class and Style Bindings -->
+        <!-- Demonstrating the use of class binding in Vue.js -->
+        <!-- The ":class" directive allows you to dynamically bind classes to an element based on data properties. -->
+        <h2>Question 5</h2>
+       
+        <!-- b. Binding Multiple Classes [v-bind:class] -->
+        <!-- You can also bind multiple classes to an element. -->
+        <div :style="{ color: textColor, fontSize: fontSize + 'px',}"> hey... <br>Good Morning ...</div>
+        </div>
+        <div class="question">
+        <!-- 6. List Rendering -->
+        <!-- In Vue.js, you can use the "v-for" directive to render a list of items based on an array or object. -->
+        <!-- Here, we're rendering a list of items from the "items" array. -->
+        <h2>Question 6</h2>
+        <!-- a. v-for with an Object -->
+        <!-- You can use v-for to render a list of items based on an object. -->
+        <!-- Here, we're rendering a list of properties from the "person" object. -->
+        <ul>
+            <li v-for="(value, key) in person">{{ key }}: {{ value }}</li>
+        </ul>
+
+        <!-- b. v-for with a Range -->
+        <!-- You can also use v-for to render a list of items based on a range. -->
+        <!-- Here, we're rendering a list of 5 items. -->
+        <ul>
+            <li v-for="n in 5">Item {{ n }}</li>
+        </ul>
+
+       <!-- c. v-for with an Array -->
+       <!-- You can use v-for to render a list of items based on an array. -->
+        <template v-for="item in items">
+            <li>{{ item.name }}</li>
+            &nbsp &nbsp Model: {{ item.model }}
+        </template>
+
+        <!-- d. v-for with a Filter -->
+        <!-- You can also use v-for to filter items in an array. -->
+        <ul>
+            <li v-for="user in users" v-if="user.active">{{ user.name }}</li>
+        </ul>
+
+       <!-- e. v-for with a Component -->
+       <!-- You can also use v-for to render a component multiple times. -->
+        <my-component v-for="(item, index) in items" :key="index" :item="item"></my-component>
+        </div>
+        <div class="question">
+        <!-- 7. Event Handling -->
+        <!-- In Vue.js, you can use the "@" symbol as shorthand for "v-on:" to listen to events. -->
+        <h2>Question 7</h2>
+        <!-- a. Inline Handlers -->
+        <button @click="showAlert('it is an Inline handler')">Inline Handler</button>
+
+        <!-- b. Method Handlers -->
+        <button @click="handleButtonClick">Method Handler</button>
+         </div>
+        <div class="question">
+        <!-- 8. Form Input Bindings -->
+        <h2>Question 8</h2>
+        <!-- a. Text -->
+        <!-- Bind a text input to a data property -->
+        <!-- <input type="text" v-model="textModel"> -->
+        <label for="textModel">Enter your name</label>
+        <input type="text" v-model="textModel">
+        <br>
+        <label for="isChecked"> are you male ?</label>
+        <!-- b. Checkbox -->
+        <!-- Bind a checkbox to a data property -->
+        <input id="isChecked" type="checkbox" v-model="isChecked">
+        <br>
+        <label for="isage">do you hace license ? </label>
+        <input id="isage" type="radio" value="option1" v-model="selectedOption">
+        <br>
+        <p>what do you prefer</p>
+        <select v-model="selectedItem">
+            <option value="item1">Coffee</option>
+            <option value="item2">Tea</option>
+        </select>
+        <br>
+        <textarea placeholder="write something about you .... " v-model="textareaModel"></textarea>
+        <br>
+    </div>   
+    <div class="question">
+        <h2>Question 9</h2>
+        
+        <p>Current Count: {{ count }}</p>
+        <button @click="deccout"> value is : </button>
+        
+    </div>
+    <div class="question">
+        <h2>Question 10 </h2>
+        
+        <!-- Main component -->
+        <custom-form :title="formTitle">
+            <!-- Slot for custom form elements -->
+            <!-- Here, we're passing the "name" and "email" data properties to the slot. -->
+            <input type="text" v-model="name" placeholder="Enter your name">
+            <input type="email" v-model="email" placeholder="Enter your email">
+            <button @click="submitForm">Submit</button>
+        </custom-form>
+    </div>
+
+    <script>
+        Vue.component('my-component','custom-form', {
+            props: ['item'],
+            props: ['title'],
+            template: '<li>{{ item.name }} - Price: {{ item.model }}</li>'
+            ,template: `
+                <div>
+                    <h2>{{ title }}</h2>
+                    <slot name="form-elements"></slot>
+                </div>
+            `
+        });
+    
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Australlia is a beautiful country',
+                continent: '7',
+                rawHTML: '<strong>rawHTML rendering . </strong>',
+                inputId: 'custom-input-id',
+                count: 100,
+                formTitle: 'User Registration Form',
+                name: '',
+                email: '',
+                isActive: false,
+                textColor: 'green',
+                fontSize: 50,
+                backgroundColor: 'lightblue',
+                person: {
+                    name: 'Anudha',
+                    age: 23,
+                    occupation: 'business analyst'
+                },
+                items: [
+                    { name: 'BMW', model: 'i8' },
+                    { name: 'Hummer', model: 'H2' },
+                    { name: 'Toyota', model: "prado" }
+                ],
+                users: [
+                    { name: 'kamal', active: true },
+                    { name: 'john', active: false },
+                    { name: 'anil', active: true },
+                    { name: 'supun', active: false },
+                    { name: 'santha', active: true },
+                    { name: 'sunil', active: false }
+                ],
+                textModel: '',
+                isChecked: false,
+                selectedOption: '',
+                selectedItem: '',
+                textareaModel: ''
+            },
+            methods: {
+                sayHello() {
+                    alert('Hello! Australia ....!');
+                },
+                showAlert(value) {
+                    alert(value);
+                },
+                handleButtonClick() {
+                    this.showAlert('It is a Method handler');
+                },
+                deccout() {
+                    this.count--;
+                },
+                submitForm() {
+                    // Emits a custom event with form data
+                    this.$emit('form-submitted', { name: this.name, email: this.email });
+                }
+                
+            },
+            computed: {
+                rmessage() {
+                    return this.message.split('').reverse().join('');
+                },
+                computedCount: function() {
+                    return this.count * 3; // tribble the count.
+                }
+            },
+            watch: {
+                // We're watching the 'computedCount' property.
+                computedCount: function(newValue, oldValue) {
+                    
+                    console.log(`computedCount changed from ${oldValue} to ${newValue}`);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
